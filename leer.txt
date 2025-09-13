@@ -1,1 +1,1 @@
-zip -r "$(date +'%Y_%m_%d_%H%M')_import-admin.zip" *
+zip -r "$(date +'%Y_%m_%d_%H%M')_import-admin.zip" * -x "*.zip"
