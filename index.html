@@ -3,81 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Calculadora Import Administració</title>
-
-  <!-- Icones -->
+  <title>Inici - Calculadora Administració</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#2c3e50">
   <link rel="icon" href="icon-192.png" type="image/png">
   <link rel="apple-touch-icon" href="icon-512.png">
-  <link rel="manifest" href="manifest.json">
-
-  <meta name="theme-color" content="#2c3e50">
   <style>
-    body { font-family: Arial, sans-serif; max-width: 480px; margin: 0 auto; padding: 20px; line-height: 1.6; }
-    h2 { text-align: center; }
-    label { display:block; margin-top:15px; }
-    input { padding: 10px; margin-top: 6px; width: 100%; font-size: 1.1em; box-sizing: border-box; }
-    button { padding: 12px; margin-top: 20px; cursor: pointer; width: 100%; font-size: 1.1em; background:#2c3e50; color:#fff; border:none; border-radius:6px; }
-    button:hover { background:#1a242f; }
-    .resultat { background: #f9f9f9; padding: 14px; border: 1px solid #ddd; margin-top: 20px; border-radius: 6px; }
+    body { font-family: Arial, sans-serif; text-align:center; padding:40px; background:#f5f5f5; }
+    h1 { margin-bottom: 30px; }
+    nav a { display:inline-block; margin:10px; padding:12px 25px; font-size:1.2em; border-radius:8px; background:#2c3e50; color:#fff; text-decoration:none; }
+    nav a:hover { background:#1a252f; }
   </style>
 </head>
 <body>
-  <h2>💰 Calculadora d'Import d'Administració</h2>
+  <h1>Benvingut/da 👋</h1>
+  <p>Escull una secció:</p>
 
-  <label for="import">Import base PEM (€):</label>
-  <input type="number" id="import" placeholder="Ex: 12345,67" step="any">
-
-  <label for="baixa">Baixa (%):</label>
-  <input type="number" id="baixa" placeholder="Ex: 7,5" step="any">
-
-  <button onclick="calcular()">Calcular</button>
-
-  <div class="resultat" id="resultats"></div>
+  <nav>
+    <a href="calculator.html">💰 Calculadora</a>
+    <a href="about.html">ℹ️ Sobre l’app</a>
+  </nav>
 
   <script>
-    document.querySelectorAll("input").forEach(el => {
-      el.addEventListener("input", () => {
-        document.getElementById("resultats").innerHTML = "";
-      });
-    });
-
-    function formatEU(num) {
-      return num.toLocaleString("ca-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    }
-
-    function calcular() {
-      let importBase = parseFloat(document.getElementById("import").value);
-      let baixa = parseFloat(document.getElementById("baixa").value);
-
-      if (isNaN(importBase) || importBase <= 0) {
-        document.getElementById("resultats").innerHTML = "⚠️ Introdueix un import vàlid.";
-        return;
-      }
-      if (isNaN(baixa) || baixa < 0) baixa = 0;
-
-      let sis = importBase * 0.06;
-      let tretze = importBase * 0.13;
-      let subtotal = importBase + sis + tretze;
-
-      let importBaixa = subtotal * (baixa / 100);
-      let totalAmbBaixa = subtotal - importBaixa;
-
-      let iva = totalAmbBaixa * 0.21;
-      let totalFinal = totalAmbBaixa + iva;
-
-      document.getElementById("resultats").innerHTML = `
-        <strong>Desglossament del càlcul:</strong><br>
-        Import base (PEM): ${formatEU(importBase)} €<br>
-        BI + 6%: ${formatEU(sis)} €<br>
-        DGE + 13%: ${formatEU(tretze)} €<br>
-        <strong>Subtotal: ${formatEU(subtotal)} €</strong><br><br>
-        Baixa (${baixa.toLocaleString("ca-ES",{minimumFractionDigits:2})}%): -${formatEU(importBaixa)} €<br>
-        <strong>Total amb baixa: ${formatEU(totalAmbBaixa)} €</strong><br><br>
-        IVA (21%): ${formatEU(iva)} €<br>
-        <strong>Total Final (amb IVA): ${formatEU(totalFinal)} €</strong>
-      `;
-    }
-
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js');
     }
