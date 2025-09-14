@@ -3,7 +3,8 @@ self.addEventListener('install', e => {
     caches.open('calc-v3').then(cache => {
       return cache.addAll([
         'index.html',
-        'calculator.html',
+        'calc-press.html',
+        'calc-baixa.html',
         'about.html',
         'manifest.json',
         'icon-192.png',

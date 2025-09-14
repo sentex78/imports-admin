@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Calculadora Import Administració (Baixa en %)</title>
+  <title>Calculadora Certificació</title>
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#2c3e50">
   <link rel="icon" href="icon-192.png" type="image/png">
@@ -21,7 +21,7 @@
   </style>
 </head>
 <body>
-  <h2>📉 Càlcul baixa en %</h2>
+  <h2>📑 Calculadora de Certificació</h2>
 
   <nav>
     <a href="index.html">⬅️ Inici</a> |
@@ -31,48 +31,45 @@
   <label for="import">Import base PEM (€):</label>
   <input type="number" id="import" placeholder="Ex: 12345,67" step="any">
 
-  <label for="baixa_euros">Baixa (€):</label>
-  <input type="number" id="baixa_euros" placeholder="Ex: 1500" step="any">
+  <label for="baixa">Baixa (%):</label>
+  <input type="number" id="baixa" placeholder="Ex: 7,5" step="any">
+
+  <label for="certificacions">Certificacions anteriors (€):</label>
+  <input type="number" id="certificacions" placeholder="Ex: 5000" step="any">
 
   <button onclick="calcular()">Calcular</button>
 
   <div class="resultat" id="resultats"></div>
 
   <script>
-    document.querySelectorAll("input").forEach(el => {
-      el.addEventListener("input", () => {
-        document.getElementById("resultats").innerHTML = "";
-      });
-    });
-
     function formatEU(num) {
       return num.toLocaleString("ca-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
     function calcular() {
       let importBase = parseFloat(document.getElementById("import").value);
-      let baixaEuros = parseFloat(document.getElementById("baixa_euros").value);
+      let baixa = parseFloat(document.getElementById("baixa").value);
+      let certificacions = parseFloat(document.getElementById("certificacions").value);
 
       if (isNaN(importBase) || importBase <= 0) {
         document.getElementById("resultats").innerHTML = "⚠️ Introdueix un import vàlid.";
         return;
       }
-      if (isNaN(baixaEuros) || baixaEuros < 0) baixaEuros = 0;
+      if (isNaN(baixa) || baixa < 0) baixa = 0;
+      if (isNaN(certificacions) || certificacions < 0) certificacions = 0;
 
       let sis = importBase * 0.06;
       let tretze = importBase * 0.13;
       let subtotal = importBase + sis + tretze;
 
-      if (baixaEuros > subtotal) {
-        document.getElementById("resultats").innerHTML = "⚠️ La baixa en € no pot superar el subtotal.";
-        return;
-      }
+      let importBaixa = subtotal * (baixa / 100);
+      let totalAmbBaixa = subtotal - importBaixa;
 
-      let percentBaixa = (baixaEuros / subtotal) * 100;
-      let totalAmbBaixa = subtotal - baixaEuros;
+      let subtotalCertificat = totalAmbBaixa - certificacions;
+      if (subtotalCertificat < 0) subtotalCertificat = 0;
 
-      let iva = totalAmbBaixa * 0.21;
-      let totalFinal = totalAmbBaixa + iva;
+      let iva = subtotalCertificat * 0.21;
+      let totalFinal = subtotalCertificat + iva;
 
       document.getElementById("resultats").innerHTML = `
         <strong>Desglossament del càlcul:</strong><br>
@@ -80,8 +77,10 @@
         BI + 6%: ${formatEU(sis)} €<br>
         DGE + 13%: ${formatEU(tretze)} €<br>
         <strong>Subtotal: ${formatEU(subtotal)} €</strong><br><br>
-        Baixa: -${formatEU(baixaEuros)} € (${percentBaixa.toLocaleString("ca-ES",{minimumFractionDigits:6})}%)<br>
+        Baixa (${baixa.toLocaleString("ca-ES",{minimumFractionDigits:2})}%): -${formatEU(importBaixa)} €<br>
         <strong>Total amb baixa: ${formatEU(totalAmbBaixa)} €</strong><br><br>
+        Certificacions anteriors: -${formatEU(certificacions)} €<br>
+        <strong>Subtotal certificat: ${formatEU(subtotalCertificat)} €</strong><br><br>
         IVA (21%): ${formatEU(iva)} €<br>
         <strong>Total Final (amb IVA): ${formatEU(totalFinal)} €</strong>
       `;
