@@ -5,6 +5,7 @@ self.addEventListener('install', e => {
         'index.html',
         'calc-press.html',
         'calc-baixa.html',
+        'calc-global.html',
         'about.html',
         'manifest.json',
         'icon-192.png',
