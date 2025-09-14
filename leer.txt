@@ -1,3 +1,4 @@
+https://sentex78.github.io/imports-admin/
 # zip -r "backups/$(date +'%Y_%m_%d_%H%M')_import-admin.zip" * -x "backups/*" "*.zip"
 
 Si tienes code instalado en tu terminal, ejecuta:
