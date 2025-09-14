@@ -1,3 +1,17 @@
-zip -r "$(date +'%Y_%m_%d_%H%M')_import-admin.zip" * -x "*.zip"
-git clone https://github.com/sentex78/imports-admin.git
-git pull origin main --rebase
+# zip -r "$(date +'%Y_%m_%d_%H%M')_import-admin.zip" * -x "*.zip"
+
+Si tienes code instalado en tu terminal, ejecuta:
+# code .
+Eso abrirá directamente el proyecto en VS Code.
+
+importar todo nuevo:
+# git clone https://github.com/sentex78/imports-admin.git
+
+forzar exportar local:
+# git pull origin main --rebase
+
+Subir cambios locales a GitHub
+Si editas algo en VS Code y quieres sincronizar tus cambios con el remoto:
+git add .
+git commit -m "Descripción de lo que cambiaste"
+git push origin main
