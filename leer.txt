@@ -1,2 +1,3 @@
 zip -r "$(date +'%Y_%m_%d_%H%M')_import-admin.zip" * -x "*.zip"
+git clone https://github.com/sentex78/imports-admin.git
 git pull origin main --rebase
