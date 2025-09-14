@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ca">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,22 +10,84 @@
   <link rel="icon" href="icon-192.png" type="image/png">
   <link rel="apple-touch-icon" href="icon-512.png">
   <style>
-    body { font-family: Arial, sans-serif; max-width: 480px; margin: 0 auto; padding: 20px; line-height: 1.6; }
-    h2 { text-align: center; }
-    label { display:block; margin-top:15px; }
-    input { padding: 10px; margin-top: 6px; width: 100%; font-size: 1.1em; box-sizing: border-box; }
-    button { padding: 12px; margin-top: 20px; cursor: pointer; width: 100%; font-size: 1.1em; background:#2c3e50; color:#fff; border:none; border-radius:6px; }
-    button:hover { background:#1a242f; }
-    .resultat { background: #f9f9f9; padding: 14px; border: 1px solid #ddd; margin-top: 20px; border-radius: 6px; }
-    nav { margin-bottom: 20px; text-align: center; }
-    nav a { margin:0 10px; color:#2c3e50; text-decoration:none; font-weight:bold; }
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+
+    input {
+      padding: 10px;
+      margin-top: 6px;
+      width: 100%;
+      font-size: 1.1em;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 12px;
+      margin-top: 20px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 1.1em;
+      background: #2c3e50;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+    }
+
+    button:hover {
+      background: #1a242f;
+    }
+
+    .resultat {
+      background: #f9f9f9;
+      padding: 14px;
+      border: 1px solid #ddd;
+      margin-top: 20px;
+      border-radius: 6px;
+    }
+
+    nav {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    nav a {
+      margin: 0 10px;
+      color: #2c3e50;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 0.9em;
+      color: #555;
+      text-align: center;
+    }
   </style>
 </head>
+
 <body>
   <h2>📑 Calculadora de Certificació</h2>
 
   <nav>
     <a href="index.html">⬅️ Inici</a> |
+    <a href="calc-press.html">💶 Càlcul baixa en €</a> |
+    <a href="calc-baixa.html">📉 Càlcul baixa en %</a> |
+    <a href="calc-global.html">📊 Calculadora Global certificacions</a> |
     <a href="about.html">ℹ️ Sobre l’app</a>
   </nav>
 
@@ -77,7 +140,7 @@
         BI + 6%: ${formatEU(sis)} €<br>
         DGE + 13%: ${formatEU(tretze)} €<br>
         <strong>Subtotal: ${formatEU(subtotal)} €</strong><br><br>
-        Baixa (${baixa.toLocaleString("ca-ES",{minimumFractionDigits:2})}%): -${formatEU(importBaixa)} €<br>
+        Baixa (${baixa.toLocaleString("ca-ES", { minimumFractionDigits: 2 })}%): -${formatEU(importBaixa)} €<br>
         <strong>Total amb baixa: ${formatEU(totalAmbBaixa)} €</strong><br><br>
         Certificacions anteriors: -${formatEU(certificacions)} €<br>
         <strong>Subtotal certificat: ${formatEU(subtotalCertificat)} €</strong><br><br>
@@ -90,5 +153,9 @@
       navigator.serviceWorker.register('sw.js');
     }
   </script>
+  <footer>
+    Versió 1.0 · Creat per <strong>Salvador Rodríguez</strong>
+  </footer>
 </body>
+
 </html>
