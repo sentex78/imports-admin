@@ -1,4 +1,4 @@
-# zip -r "$(date +'%Y_%m_%d_%H%M')_import-admin.zip" * -x "*.zip"
+# zip -r "backups/$(date +'%Y_%m_%d_%H%M')_import-admin.zip" * -x "backups/*" "*.zip"
 
 Si tienes code instalado en tu terminal, ejecuta:
 # code .
@@ -14,6 +14,6 @@ Subir cambios locales a GitHub
 Si editas algo en VS Code y quieres sincronizar tus cambios con el remoto:
 #
 git add .
-git commit -m "Leer txt"
+git commit -m "backup"
 git push origin main
 #
