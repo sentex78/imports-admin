@@ -1,6 +1,6 @@
 {
-  "name": "Calculadora Administració",
-  "short_name": "Calculadora",
+  "name": "PEMCalc — càlculs de PEM i baixes",
+  "short_name": "PEMCalc",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
